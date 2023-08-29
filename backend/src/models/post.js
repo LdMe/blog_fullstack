@@ -10,7 +10,11 @@ const PostSchema = new connection.Schema({
         type: String,
         required: false,
     },
-    imageLink: {
+    questionImage: {
+        type: String,
+        required: false,
+    },
+    answerImage: {
         type: String,
         required: false,
     },

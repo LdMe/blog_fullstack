@@ -29,18 +29,27 @@ export const createPost = async (req, res) => {
     }
 }
 
-export const replyPost = async (req, res) => {
+export const answerPost = async (req, res) => {
     const postId = req.params.id;
-    const {answer,imageLink} = req.body;
+    const {answer,answerImage} = req.body;
     if(!answer || answer.trim() === "") return res.status(400).json({message: "Answer is required"});
     try {
         const post = await Post.findById(postId);
         post.answer = answer;
-        post.imageLink = imageLink;
+        post.answerImage = answerImage;
         await post.save();
         res.status(200).json(post);
     }
     catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
+export const deletePost = async (req, res) => {
+    try {
+        const post = await Post.findByIdAndRemove(req.params.id);
+        res.status(200).json(post);
+    } catch (error) {
         res.status(404).json({ message: error.message });
     }
 }
