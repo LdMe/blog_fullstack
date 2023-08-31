@@ -9,6 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/', (req, res) => {
+    console.log("Hello World!");
+    console.log("connection from " + req.ip);
     res.send('Hello World!');
     }
 );
