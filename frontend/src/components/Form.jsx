@@ -27,7 +27,9 @@ const Form = ({onSubmit}) => {
                 <label htmlFor="questionImage">Link de la imagen (opcional)</label>
                 <input type="text" id="questionImage" name="questionImage" />
                 </section>
-                <button type="submit">Enviar</button>
+                <button type="submit" className='primary'>
+                    <i className="fa fa-check"></i>
+                </button>
             </form>
 
         </section>

@@ -8,6 +8,9 @@ services:
       - 27020:27017
     volumes:
       - ./data:/data/db
+    networks:
+      - mongo
+
   backend:
     build: ./backend
     container_name: backend-blog
@@ -17,4 +20,38 @@ services:
     volumes:
       - ./backend:/app
       - /app/node_modules
+    environment:
+      - VIRTUAL_HOST=api.blog.lafuentedanel.com
+      - VIRTUAL_PORT=80
+      - LETSENCRYPT_HOST=api.blog.lafuentedanel.com
+      - LETSENCRYPT_EMAIL=admin@lafuentedanel.com
+    networks:
+      - proxy
+      - mongo
+
+  frontend:
+    image: nginx:latest
+    container_name: frontend-blog
+    restart: always
+    expose:
+      - "80"
+    environment:
+      - VIRTUAL_HOST=blog.lafuentedanel.com
+      - VIRTUAL_PORT=80
+      - LETSENCRYPT_HOST=blog.lafuentedanel.com
+      - LETSENCRYPT_EMAIL=admin@lafuentedanel.com
+    volumes:
+      - /home/ubuntu/blog:/usr/share/nginx/html:ro
+    networks:
+      - proxy
+
+    
+networks:
+  proxy:
+      name: nginx-proxy
+      external: true
+  mongo:
+      name: mongo-network
+      external: false
+
 

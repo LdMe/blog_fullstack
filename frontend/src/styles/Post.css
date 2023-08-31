@@ -20,8 +20,11 @@
 .post button {
     margin: 5px 0;
     padding: 5px;
-    cursor: pointer;
-    width:50%;
+    width:45%;
+    border-radius: 100px;
+    border: none;
+    box-sizing: border-box;
+
 }
 
 .post .post__answer {
@@ -30,13 +33,26 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #ffd5d54a;
+    border-left: 5px solid #494949;
+    padding: 5px;
+    margin: 0 0 0 15px;
+
+
 }
+
+.post__question {
+    font-style: italic;
+    background-color: #bebebe96;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
 .answer {
     width: 100%;
 }
 
-.answer section {
+.new__question__answer, .new__question__image {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -50,17 +66,15 @@
     resize: none;
 }
 
-.primary{
-    background-color: #1db33eac;
-    color: #000;
+.post__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    gap: 10px;
+
 }
 
-.warning {
-    background-color: #dea71093;
-    color: #000;
-}
-
-.danger {
-    background-color: #ff000081;
-    color: #000;
+.new__question__image {
+    margin-bottom: 15px;
 }

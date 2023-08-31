@@ -23,3 +23,30 @@ main {
   margin-top:20px;
   margin-bottom:60px;
 }
+
+.primary {
+  background-color: #00bfff95;
+  color: #000;
+}
+
+.success{
+  background-color: #00ff3795;
+  color: #000;
+}
+
+.warning {
+  background-color: #dea71095;
+  color: #000;
+}
+
+.danger {
+  background-color: #ff9a9a;
+  color: #000;
+}
+.fa {
+  font-size: 1.2rem;
+}
+
+button:hover {
+  cursor: pointer;
+}
