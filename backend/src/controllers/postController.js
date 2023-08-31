@@ -2,7 +2,25 @@ import Post from '../models/post.js';
 
 export const getPosts = async (req, res) => {
     try {
-        const posts = await Post.find();
+        let posts;
+        let answered = req.query.answered;
+        let query = req.query.query;
+        let filter = {};
+        if(answered === "true") {
+            filter["answer"] = {$ne: null};
+        }
+        else if(answered === "false") {
+            filter["answer"] = null;
+        }
+        if(query) {
+            filter["$or"] = [
+                {question: {$regex: query, $options: "i"}},
+                {answer: {$regex: query, $options: "i"}},
+                {topic: {$regex: query, $options: "i"}},
+            ]
+        }
+        posts = await Post.find(filter);
+        posts  = posts.sort((a,b) => b.date - a.date);
         res.status(200).json(posts);
     } catch (error) {
         res.status(404).json({ message: error.message });
