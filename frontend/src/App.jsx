@@ -127,7 +127,7 @@ function App() {
     <nav>
       <a href="" onClick={(e)=>handleRoute(e,"home")}>Blog</a>
       {!isLoggedIn && <a href="" onClick={(e)=>handleRoute(e,"login")}>Iniciar sesión</a>}
-      
+      <i class="fa fa-bars"></i>
     </nav>
     {route === "home" ? (
       <>
