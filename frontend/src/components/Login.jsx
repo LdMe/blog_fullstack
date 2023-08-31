@@ -1,5 +1,7 @@
 import { backend_url } from '../config';
 
+import '../styles/Login.css';
+
 const Login = ({redirect}) => {
     const handleSubmit = async (event) => {
         event.preventDefault();

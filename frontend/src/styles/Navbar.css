@@ -63,11 +63,24 @@ nav {
     flex-direction: column;
     gap: 10px;
   }
+  .menu__search__input {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    vertical-align: middle;
+  }
+    .menu__search__input input {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        width: 95%;
+    }
 
-  .menu__search input {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
+  .menu__search__input  i{
+    font-size: 1.5rem;
+    color: #000;
+    cursor: pointer;
+    padding: 10px 0;
   }
   .menu__search select {
     padding: 10px;

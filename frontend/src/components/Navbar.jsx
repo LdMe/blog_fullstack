@@ -42,7 +42,7 @@ const  Navbar = ({onRouteChange, isLoggedIn,search, route}) => {
     useEffect(() => {
         setQuery("");
     },[route]);
-    
+
     return (
         <nav>
             <i className="fa fa-bars" onClick={()=>setShowMenu(!showMenu)}></i>
@@ -58,7 +58,10 @@ const  Navbar = ({onRouteChange, isLoggedIn,search, route}) => {
                     {route === "home" && (
                     <form className="menu__search" onSubmit={handleSubmit} >
                         <i className="fa fa-search"></i>
-                            <input  className="nav-link" type="text" placeholder="Buscar" value={query} onChange={handleSearch} />
+                            <section className="menu__search__input">
+                                <input  className="nav-link" type="text" placeholder="Buscar" value={query} onChange={handleSearch} />
+                                <i className="fa fa-trash" onClick={()=>setQuery("")}></i>
+                            </section>
                             <select  className="nav-link" name="filter" id="filter" onChange={handleFilter}>
                                 <option value="all">Todas</option>
                                 <option value="answered">Respondidas</option>
