@@ -1,3 +1,5 @@
+import "../styles/index.css";
+
 import { backend_url } from '../config';
 
 const Login = ({redirect}) => {

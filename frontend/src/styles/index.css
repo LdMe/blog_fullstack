@@ -1,0 +1,229 @@
+@font-face {
+    font-family: 'Lora';
+    src: url('/fonts/Lora-VariableFont_wght.ttf');
+}
+
+
+
+/******************** AJUSTES GLOBALES *******************/
+#root {
+    margin: 0px auto;
+    font-family: 'Lora', 'Times New Roman', Times, serif;
+    font-size: var(--text-height);
+    line-height: 1.4em;
+    color: #333;
+    /* Hs */
+    --H-height: 3rem;
+    --text-height: 1.2rem;
+    --H-color: #454545;
+    --font-color: #111;
+    --aux-color: #007bff;
+    --back-color: #cccccc;
+    --gap-x: 15px;
+    --width: 100%;
+    --width-max: 1000px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+img {
+    width: 100%;
+    padding: 5px 0px 15px 0px;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Lora', 'Times New Roman', Times, serif;
+    font-size: var(--H-height);
+    line-height: 1.1em;
+    padding: 30px 0px 20px 0px;
+    color: var(--H-color);
+}
+
+button {
+    cursor: pointer;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 999px;
+    background-color: var(--H-color);
+    color: white;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: var(--aux-color);
+    color: white;
+}
+
+
+/******************** AJUSTES SECCIONES *******************/
+
+/**************** CABECERA ****************/
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    width: 100% !important;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+}
+
+nav h1 {
+    font-size: 55px;
+    color: #202020;
+    padding: 0px;
+}
+
+@media only screen and (max-width: 900px) {
+    nav {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    nav div {
+        display: flex;
+        align-items: right;
+    }
+
+    nav h1 {
+        font-size: 45px;
+        padding: 15px 0px 0px 0px;
+    }
+}
+
+
+
+nav button {
+    background-color: white;
+    color: var(--font-color);
+    border: 2.5px solid var(--font-color);
+    margin-left: 10px;
+}
+
+nav button:hover {
+    background-color: var(--aux-color);
+    color: white;
+    border: 2.5px solid var(--aux-color);
+
+}
+
+
+/**************** BODY ****************/
+
+/***Selector***/
+#selector {
+    width: var(--width);
+    max-width: var(--width-max);
+    margin: auto;
+    padding: 180px 15px 180px 15px;
+}
+
+#selector p {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#input_selector {
+    border: 2px solid var(--H-color);
+    padding: 10px 15px;
+}
+
+#filter {
+    letter-spacing: 1px;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 999px;
+    background-color: transparent;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+select#filter {
+    color: var(--font-color);
+    appearance: none;
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+}
+
+#selector i {
+    width: 16px;
+    height: 16px;
+    display: block;
+    border-left: 4px solid var(--font-color);
+    border-bottom: 4px solid var(--font-color);
+    transform: rotate(-45deg);
+    /* Giramos el cuadrado */
+    transition: all 0.25s ease;
+}
+
+
+
+/***Posts***/
+#postBoard {
+    width: var(--width);
+    max-width: var(--width-max);
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 0px 0px 15px 15px;
+    gap: var(--gap-x);
+}
+
+.post {
+    padding: 0px 15px 15px 15px;
+    background-color: #f0f0f0;
+    width: calc(50% - var(--gap-x));
+}
+
+@media only screen and (max-width: 840px) {
+    .post {
+        width: 100%;
+        margin: 0px 15px 0px 15px;
+    }
+
+    #postBoard {
+        padding: 0px 0px 15px 0px;
+
+    }
+}
+
+#postDate {
+    margin: 15px 0px 30px 0px;
+    color: var(--H-color);
+}
+
+
+.login {
+    background-color: var(--back-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 0px;
+    height: 100vh;
+}
+
+.login__form {
+    padding: 0px 15px;
+    width: var(--width);
+    max-width: var(--width-max);
+    margin: auto;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
