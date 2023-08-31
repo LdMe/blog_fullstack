@@ -8,18 +8,6 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-nav {
-  position:fixed;
-  top:0;
-  right:0;
-  left:0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
 
 nav a {
   text-decoration: none;
@@ -29,4 +17,9 @@ nav a {
 
 nav a:hover {
   color: #ff0000;
+}
+
+main {
+  margin-top:20px;
+  margin-bottom:60px;
 }

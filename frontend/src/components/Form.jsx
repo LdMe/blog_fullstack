@@ -17,11 +17,11 @@ const Form = ({onSubmit}) => {
             <form onSubmit={handleSubmit}>
                 <section className="new__question__topic">
                 <label htmlFor="topic">Tema</label>
-                <input type="text" id="topic" name="topic" />
+                <input type="text" id="topic" name="topic" required/>
                 </section>
                 <section className="new__question__question">
                 <label htmlFor="question">Pregunta</label>
-                <textarea id="question" name="question" />
+                <textarea id="question" name="question" required/>
                 </section>
                 <section className="new__question__image">
                 <label htmlFor="questionImage">Link de la imagen (opcional)</label>

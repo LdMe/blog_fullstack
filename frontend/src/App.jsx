@@ -3,6 +3,7 @@ import Post from './components/Post';
 import Form from './components/Form';
 import Login from './components/Login';
 import { backend_url } from './config';
+import Navbar from './components/Navbar';
 import './App.css'
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
       const data = await response.json();
       console.log(data);
       setPosts([data,...posts]);
+      setRoute('home');
     }
     catch(error){
       console.log(error);
@@ -64,6 +66,7 @@ function App() {
     });
     if(!response.ok){
       if(response.status === 401){
+        localStorage.removeItem('token');
         setTemporalAnswer(answer);
         setRoute('login');
         return;
@@ -102,6 +105,7 @@ function App() {
     });
     if(!response.ok){
       if(response.status === 401){
+        localStorage.removeItem('token');
         setRoute('login');
         return;
       }
@@ -116,28 +120,20 @@ function App() {
     event.preventDefault();
     setRoute(route);
   }
+  const search = (q,s)=>{
+    setQuery(q);
+    setAnsweredSelector(s);
+  }
   useEffect(() => {
     getPosts();
   },[answeredSelector,query]);
 
   const isLoggedIn = localStorage.getItem('token');
-
-  return (
-    <>
-    <nav>
-      <a href="" onClick={(e)=>handleRoute(e,"home")}>Blog</a>
-      {!isLoggedIn && <a href="" onClick={(e)=>handleRoute(e,"login")}>Iniciar sesión</a>}
-      <i class="fa fa-bars"></i>
-    </nav>
-    {route === "home" ? (
+  let section = null;
+  if(route === 'home'){
+    section = (
       <>
-      <Form onSubmit={createPost}/>
-      <input type="text" placeholder="Buscar" onChange={(e) => setQuery(e.target.value.trim())}/>
-      <select name="filter" id="filter" onChange={(e)=>setAnsweredSelector(e.target.value)}>
-        <option value="all">Todas</option>
-        <option value="answered">Respondidas</option>
-        <option value="unanswered">Sin responder</option>
-      </select>
+      {posts.length === 0 && <p>No hay preguntas</p>}
       {posts.map((post) => (
         <Post 
           key={post._id} 
@@ -149,11 +145,31 @@ function App() {
         />
       ))}
       </>
-    ) : (
+    );
+  }
+  else if(route === 'login'){
+    section = (
       <Login
       redirect={()=>setRoute("home")}
       />
-    )}
+    );
+  }
+  else if(route === 'new'){
+    section = (
+      <Form onSubmit={createPost}/>
+    );
+  }
+  return (
+    <>
+    <Navbar
+      onRouteChange={setRoute}
+      isLoggedIn={isLoggedIn}
+      search={search}
+      route={route}
+    />
+    <main>
+      {section}
+    </main>
     </>
   )
 }

@@ -37,7 +37,7 @@ const Post = ({ post,onAnswer,onDelete,temporalAnswer, isLoggedIn }) => {
                 <form onSubmit={handleSubmit} className="answer">
                     <section className="new__question__answer">
                     <label htmlFor="answer">Respuesta</label>
-                    <textarea id="answer" name="answer" defaultValue={answerText}/>
+                    <textarea id="answer" name="answer" defaultValue={answerText} required/>
                     </section>
                     <section className="new__question__image">
                     <label htmlFor="answerImage" >Link de la imagen (opcional)</label>
