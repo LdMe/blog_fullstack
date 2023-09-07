@@ -1,23 +1,26 @@
-import User from '../models/user.js';
+import {createUser, getUser} from '../../controllers/user/userController.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-
 export const register = async (req, res) => {
     try {
         const {username,password,repeatPassword} = req.body;
-        if(await User.findOne({username})) {
+        if(username.includes(",") || username.includes(" ")) {
+            return res.status(400).json({message: "Username cannot contain spaces or commas"});
+        }
+        if(await getUser(username)) {
             return res.status(400).json({message: "Username already exists"});
         }
         if(password !== repeatPassword) {
             return res.status(400).json({message: "Passwords do not match"});
         }
         const hashedPassword = await bcrypt.hash(password, 12);
-        const user = new User({username, password: hashedPassword});
-        await user.save();
+        const user = await createUser(username,hashedPassword);
+        console.log("user",user)
+        if(!user) res.status(500).json({message: "Something went wrong"});
         res.status(201).json({message: "User registered successfully"});
     }
     catch (error) {
@@ -28,7 +31,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
     try{
         const {username, password} = req.body;
-        const user = await User.findOne({username});
+        const user = await getUser(username);
         if(!user) {
             return res.status(404).json({message: "User not found"});
         }

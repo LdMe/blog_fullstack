@@ -10,7 +10,19 @@ const UserSchema = new connection.Schema({
     password :{
         type: String,
         required: true,
-    }
+    },
+    bio: {
+        type: String,
+        default: '',
+    },
+    family: {
+        type: Array,
+        default: [],
+    },
+    familyRequests: {
+        type: Array,
+        default: [],
+    },
 });
 
 const User = connection.model('User', UserSchema);

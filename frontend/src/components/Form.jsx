@@ -3,10 +3,11 @@ import '../styles/Form.css'
 const Form = ({onSubmit}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(e.target.questionImage.value)
         const post = {
             topic: e.target.topic.value,
-            question: e.target.question.value,
-            questionImage: e.target.questionImage.value
+            content: e.target.question.value,
+            image: e.target.questionImage.files[0]
         };
         e.target.reset();
         onSubmit(post);
@@ -24,8 +25,8 @@ const Form = ({onSubmit}) => {
                 <textarea id="question" name="question" required/>
                 </section>
                 <section className="new__question__image">
-                <label htmlFor="questionImage">Link de la imagen (opcional)</label>
-                <input type="text" id="questionImage" name="questionImage" />
+                <label htmlFor="questionImage">Imagen (opcional)</label>
+                <input type="file" id="questionImage" name="questionImage" />
                 </section>
                 <button type="submit" className='primary'>
                     <i className="fa fa-check"></i>

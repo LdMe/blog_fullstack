@@ -28,13 +28,18 @@ function App() {
   }
 
   const createPost = async (post) => {
+
     try{
-      const response = await fetch(`${backend_url}/api/posts`,{
+      const formData = new FormData();
+      formData.append('topic',post.topic);
+      formData.append('content',post.content);
+      formData.append('image',post.image);
+      const response = await fetch(`${backend_url}/api/chats/64f31c1d699ec9445a43d6db/messages`,{
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiI2NGVkYzcyYTZkY2Y2MDAyMGM5ZDMwYjIiLCJpYXQiOjE2OTQxMTQwODksImV4cCI6MTY5NDIwMDQ4OX0.Bkbmmuw3ZOKGmHAIIGr4GC2DPAhVhA8nXsDvqLNE9pg`
         },
-        body: JSON.stringify(post)
+        body: formData
       });
       if(!response.ok){
         const message = `An error has occured: ${response.status}`;
